@@ -9,7 +9,11 @@
     'category': 'Parent Category/Category',
     'license': 'OPL-1',
 
-    'depends': ['base'],
+    'depends': [
+        'base',
+        'contacts',
+        'sale',
+    ],
     'data': [
         'views/menuitems.xml',
         'security/ir.model.access.csv',

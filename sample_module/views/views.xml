@@ -6,12 +6,31 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <group>
+                    <group col="4">
                         <group>
                             <field name="name"/>
                             <field name="number"/>
                         </group>
+                        <group>
+                            <field name="cost_per_gallon" />
+                            <field name="gallons_per_tank" />
+                            <field name="cost_per_tank" />
+                        </group>
+                        <group>
+                            <field name="length" />
+                            <field name="width" />
+                            <field name="height" />
+                            <field name="ship_volume" />
+                        </group>
                     </group>
+                    <notebook>
+                        <page string="Sale Orders">
+                            <field name="sale_order_ids" />
+                        </page>
+                        <page string="Pilots">
+                            <field name="pilot_ids" widget="many2many" />
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -27,4 +46,27 @@
             </tree>
         </field>
     </record>
+
+    <record id="sale_order_form_view_inherit" model="ir.ui.view">
+        <field name="name">spaceship.sale.order.form.view.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="spaceship_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="res_partner_form_view_inherit" model="ir.ui.view">
+        <field name="name">spaceship.res.partner.form.view.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <field name="vat" position="after">
+                <field name="spaceship_id" />
+            </field>
+        </field>
+    </record>
+
 </odoo>
